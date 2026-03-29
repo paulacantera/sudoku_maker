@@ -1,0 +1,243 @@
+/* ── App shell ─────────────────────────────────────────────────── */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f6fb;
+  outline: none;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Header ────────────────────────────────────────────────────── */
+.app-header {
+  width: 100%;
+  padding: 24px 16px 16px;
+  text-align: center;
+  background: #1a1a2e;
+  color: #e8e8f0;
+}
+
+.app-header h1 {
+  margin: 0 0 4px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #a0a0c0;
+}
+
+/* ── Main layout ───────────────────────────────────────────────── */
+.app-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 28px 16px 40px;
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ── Controls row ──────────────────────────────────────────────── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.difficulty-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-right: 2px;
+}
+
+.diff-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 2px solid #c0c0d8;
+  background: #fff;
+  color: #444;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.diff-btn:hover {
+  border-color: #5b5fc7;
+  color: #5b5fc7;
+}
+
+.diff-btn.active {
+  background: #5b5fc7;
+  border-color: #5b5fc7;
+  color: #fff;
+}
+
+.new-game-btn {
+  padding: 8px 22px;
+  border-radius: 8px;
+  border: none;
+  background: #5b5fc7;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.18s, transform 0.1s;
+}
+
+.new-game-btn:hover {
+  background: #4749a6;
+}
+
+.new-game-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Solved banner ─────────────────────────────────────────────── */
+.solved-banner {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ── Sudoku board ──────────────────────────────────────────────── */
+.sudoku-board {
+  border-collapse: collapse;
+  border: 3px solid #1a1a2e;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+.sudoku-board td.cell {
+  width: 46px;
+  height: 46px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid #c8c8d8;
+  user-select: none;
+  transition: background 0.12s;
+}
+
+/* Thick borders to separate 3×3 boxes */
+.sudoku-board tr:nth-child(3n) td {
+  border-bottom: 3px solid #1a1a2e;
+}
+.sudoku-board td:nth-child(3n) {
+  border-right: 3px solid #1a1a2e;
+}
+
+/* Cell states */
+.cell.given {
+  color: #1a1a2e;
+  background: #eeeef8;
+  cursor: default;
+}
+
+.cell.editable {
+  color: #5b5fc7;
+}
+
+.cell.highlighted {
+  background: #e0e0f8;
+}
+
+.cell.given.highlighted {
+  background: #d0d0ee;
+}
+
+.cell.selected {
+  background: #b8b8f0 !important;
+  outline: 2px solid #5b5fc7;
+  outline-offset: -2px;
+}
+
+.cell.error {
+  color: #dc3545;
+}
+
+/* ── Number pad ────────────────────────────────────────────────── */
+.number-pad {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.digit-btn {
+  padding: 12px 0;
+  border-radius: 8px;
+  border: 2px solid #c0c0d8;
+  background: #fff;
+  color: #5b5fc7;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.digit-btn:hover {
+  background: #5b5fc7;
+  border-color: #5b5fc7;
+  color: #fff;
+}
+
+.digit-btn:active {
+  transform: scale(0.95);
+}
+
+.erase-btn {
+  color: #dc3545;
+  border-color: #f5c2c7;
+}
+
+.erase-btn:hover {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+/* ── Responsive tweaks ─────────────────────────────────────────── */
+@media (max-width: 420px) {
+  .sudoku-board td.cell {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .number-pad {
+    max-width: 280px;
+  }
+
+  .digit-btn {
+    padding: 10px 0;
+    font-size: 1rem;
+  }
+}
+
